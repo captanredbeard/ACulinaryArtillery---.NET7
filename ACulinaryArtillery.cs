@@ -17,9 +17,11 @@ namespace ACulinaryArtillery
             api.RegisterBlockClass("BlockMeatHooks", typeof(BlockMeatHooks));
             api.RegisterBlockClass("BlockBottleRack", typeof(BlockBottleRack));
             api.RegisterBlockClass("BlockMixingBowl", typeof(BlockMixingBowl));
-            api.RegisterBlockClass("BlockBottle", typeof(BlockBottle));
+           // api.RegisterBlockClass("BlockBottle", typeof(BlockBottle));
             api.RegisterBlockClass("BlockSpile", typeof(BlockSpile));
             api.RegisterBlockClass("BlockSaucepan", typeof(BlockSaucepan));
+            api.RegisterBlockClass("ACA.BlockCorkableLiquidContainer",typeof(BlockCorkableLiquidContainer));
+            api.RegisterBlockClass("ACA.BlockThrowableBottle", typeof(BlockThrowableBottle));
 
             api.RegisterBlockEntityClass("MeatHooks", typeof(BlockEntityMeatHooks));
             api.RegisterBlockEntityClass("BottleRack", typeof(BlockEntityBottleRack));
@@ -34,6 +36,8 @@ namespace ACulinaryArtillery
             api.RegisterItemClass("ExpandedDough", typeof(ItemExpandedDough));
 
             api.RegisterCollectibleBehaviorClass("EggCrack", typeof(CollectibleBehaviorEggCrack));
+
+            api.RegisterEntity("EntityThrownBottle",typeof(EntityThrownBottle));
 
             //Check for Existing Config file, create one if none exists
             try
