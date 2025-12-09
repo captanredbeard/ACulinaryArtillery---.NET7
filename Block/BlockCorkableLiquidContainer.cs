@@ -18,7 +18,7 @@ using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
-    public class BlockCorkableLiquidContainer : BlockLiquidContainerTopOpened, IContainedInteractable
+    public class BlockCorkableLiquidContainer : BlockLiquidContainerTopOpened //, IContainedInteractable
     {
         /*
          * 
@@ -31,7 +31,7 @@ namespace ACulinaryArtillery
          */
 
 
-        private CorkedContainerProps props = new();
+        private LiquidTopOpenContainerProps props = new();
         protected virtual string MeshRefsCacheKey => Code.ToShortString() + "meshRefs";
         protected virtual AssetLocation EmptyShapeLoc => props.EmptyShapeLoc ?? Shape.Base;
         protected virtual AssetLocation ContentShapeLoc => props.OpaqueContentShapeLoc;
@@ -258,9 +258,10 @@ namespace ACulinaryArtillery
         #region interaction
         //I was attempting to add OnContained Interacts to allow for corking/uncorking bottles inside of ground storages, and I might be back to reimplement it.
 
-
+        /*
         public virtual bool OnContainedInteractStart(BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
         {
+            /*
             ItemSlot activeHotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
             if (activeHotbarSlot.Empty)
             {
@@ -282,7 +283,7 @@ namespace ACulinaryArtillery
 
                 return true;
             }
-
+            
             return false;
         }
         public bool OnContainedInteractStep(float secondsUsed, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
@@ -293,10 +294,11 @@ namespace ACulinaryArtillery
         {
 
         }
-
+        */
 
         public override void OnHeldInteractStart(ItemSlot itemslot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling)
         {
+            /*
             IPlayer player = (byEntity as EntityPlayer)?.Player;
             if (player != null && blockSel == null && entitySel == null && Variant["type"] == "corked")
             {
@@ -310,12 +312,13 @@ namespace ACulinaryArtillery
                     (api as ICoreClientAPI)?.TriggerIngameError(this, "fulloffhandslot", Lang.Get("aculinaryartillery:bottle-fulloffhandslot"));
                 }
             }
-
+            */
             base.OnHeldInteractStart(itemslot, byEntity, blockSel, entitySel, firstEvent, ref handHandling);
         }
 
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot itemslot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
+            /*
             IPlayer player = (byEntity as EntityPlayer)?.Player;
             if (player != null && blockSel == null && entitySel == null && corkStack != null && secondsUsed > 0.5)
             {
@@ -352,6 +355,7 @@ namespace ACulinaryArtillery
                     return false;
                 }
             }
+            */
             return base.OnHeldInteractStep(secondsUsed, itemslot, byEntity, blockSel, entitySel); ;
         }
         public override bool OnHeldInteractCancel(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, EnumItemUseCancelReason cancelReason)
@@ -367,7 +371,6 @@ namespace ACulinaryArtillery
 
         public override bool MatchesForCrafting(ItemStack inputStack, GridRecipe gridRecipe, CraftingRecipeIngredient ingredient)
         {
-            if()
             if ((gridRecipe.Output.ResolvedItemstack?.Collectible is BlockCorkableLiquidContainer))
             {
                 bool flag = false;
@@ -395,6 +398,7 @@ namespace ACulinaryArtillery
 
         public override void OnCreatedByCrafting(ItemSlot[] allInputslots, ItemSlot outputSlot, GridRecipe byRecipe)
         {
+            base.OnCreatedByCrafting(allInputslots,outputSlot,byRecipe);
             if (outputSlot.Itemstack == null)
             {
                 return;
@@ -403,9 +407,9 @@ namespace ACulinaryArtillery
             {
                 outputSlot.Itemstack.Attributes.SetItemstack("corkStack", null);
                 outputSlot.Itemstack.Attributes.SetInt("renderVariant", 1);
-                outputSlot.Itemstack.Attributes.SetBool("canDrinkFrom", value: false);
-                outputSlot.Itemstack.Attributes.SetBool("isTopOpened", value: false);
-                outputSlot.Itemstack.Attributes.SetBool("allowHeldLiquidTransfer", value: false);
+                outputSlot.Itemstack.Attributes.SetBool("canDrinkFrom", value: true);
+                outputSlot.Itemstack.Attributes.SetBool("isTopOpened", value: true);
+                outputSlot.Itemstack.Attributes.SetBool("allowHeldLiquidTransfer", value: true);
             }
             foreach (ItemSlot itemSlot in allInputslots)
             {
@@ -419,15 +423,15 @@ namespace ACulinaryArtillery
                         {
                             var inputcorkstack = resolvedItemstack.GetEmptyClone();
                             inputcorkstack.StackSize = 1;
-                            outputSlot.Itemstack.Attributes.SetItemstack("corkStack",inputcorkstack);
+                 //           outputSlot.Itemstack.Attributes.SetItemstack("corkStack",inputcorkstack);
                             break;
                         }
 
                     }
-                    outputSlot.Itemstack.Attributes.SetInt("renderVariant", 1);
-                    outputSlot.Itemstack.Attributes.SetBool("canDrinkFrom", value: false);
-                    outputSlot.Itemstack.Attributes.SetBool("isTopOpened", value: false);
-                    outputSlot.Itemstack.Attributes.SetBool("allowHeldLiquidTransfer", value: false);
+         //           outputSlot.Itemstack.Attributes.SetInt("renderVariant", 1);
+           //         outputSlot.Itemstack.Attributes.SetBool("canDrinkFrom", value: false);
+             //       outputSlot.Itemstack.Attributes.SetBool("isTopOpened", value: false);
+               //     outputSlot.Itemstack.Attributes.SetBool("allowHeldLiquidTransfer", value: false);
 
                 }
             }
@@ -435,6 +439,7 @@ namespace ACulinaryArtillery
 
         public override void TryMergeStacks(ItemStackMergeOperation op)
         {
+            /*
             ItemSlot sourceSlot = op.SourceSlot;
 
             if (Variant["type"] != "corked" && op.CurrentPriority == EnumMergePriority.DirectMerge)
@@ -470,7 +475,7 @@ namespace ACulinaryArtillery
                     return;
                 }
             }
-
+            */
             base.TryMergeStacks(op);
         }
         public override int GetMergableQuantity(ItemStack sinkStack, ItemStack sourceStack, EnumMergePriority priority)
@@ -478,7 +483,7 @@ namespace ACulinaryArtillery
             if (priority == EnumMergePriority.DirectMerge)
             {
                 Vintagestory.API.Datastructures.JsonObject itemAttributes = sourceStack.ItemAttributes;
-                if (itemAttributes != null && itemAttributes["canSealBottle"]?.AsBool() == true && Variant["type"] != "corked")
+                if (itemAttributes != null && itemAttributes["canSealBottle"]?.AsBool() == true)
                 {
                     return 1;
                 }

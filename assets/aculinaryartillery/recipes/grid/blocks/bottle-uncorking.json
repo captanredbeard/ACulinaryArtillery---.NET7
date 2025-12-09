@@ -1,0 +1,56 @@
+[
+	{
+		"ingredientPattern": "G",
+		"ingredients": {
+			"G": {
+				"type": "block",
+				"code": "bottle-clay-*-fired",
+				"name": "color",
+				"attributes": {
+					"isTopOpened": false
+				}
+			}
+		},
+		"width": 1,
+		"height": 1,
+		"MergeAttributesFrom": "G",
+		"name": "uncorkedclaybottle",
+		"output": {
+			"type": "block",
+			"code": "bottle-clay-{color}-fired",
+			"attributes": {
+				"renderVariant": 0,
+				"canDrinkFrom": true,
+				"isTopOpened": true,
+				"allowHeldLiquidTransfer": true
+			}
+		}
+	},
+	{
+		"ingredientPattern": "G",
+		"ingredients": {
+			"G": {
+				"type": "block",
+				"code": "bottle-glass-*-fired",
+				"name": "color",
+				"attributes": {
+					"isTopOpened": false
+				}
+			}
+		},
+		"width": 1,
+		"height": 1,
+		"name": "uncorkedglassbottle",
+		"MergeAttributesFrom": "G",
+		"output": {
+			"type": "block",
+			"code": "bottle-glass-{color}-fired",
+			"attributes": {
+				"renderVariant": 0,
+				"canDrinkFrom": true,
+				"isTopOpened": true,
+				"allowHeldLiquidTransfer": true
+			}
+		}
+	}
+]

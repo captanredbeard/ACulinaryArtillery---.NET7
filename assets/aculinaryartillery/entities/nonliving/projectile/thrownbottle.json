@@ -13,7 +13,7 @@
 		},
 		{
 			"code": "type",
-			"states": [ "fired", "corked" ]
+			"states": [ "fired"]
 		}
 	],
 	"allowedVariants": [
@@ -68,8 +68,7 @@
 		},
 
 		"shapeByType": {
-			"*-corked": { "base": "block/{material}/winebottle-corked" },
-			"*-fired": { "base": "block/{material}/winebottle-opened" }
+			"*-fired": { "base": "aculinaryartillery:block/bottle/openedbottleglass" }
 		},
 		"size": 1,
 		"behaviors": [

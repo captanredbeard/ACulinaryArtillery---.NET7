@@ -14,7 +14,7 @@
 			"states": [ "fired" ]
 		}
 	],
-	"class": "ACA.BlockThrowableBottle",
+	"class": "ACA.BlockCorkableLiquidContainer",
 	"creativeinventory": {
 		"general": [ "*" ],
 		"aculinaryartillery": [ "*" ]
@@ -39,13 +39,15 @@
 		"minFillSideways": 6.7,
 		"maxFillSideways": 9.3,
 		"isClear": true,
-		"liquidContainerProps": {
-			"capacityLitres": 1,
-			"transferSizeLitres": 0.1,
-			"emptyShapeLoc": "aculinaryartillery:shapes/block/bottle/corkedbottleglass",
-			"opaqueContentShapeLoc": "aculinaryartillery:shapes/block/bottle/contents",
-			"liquidContentShapeLoc": "aculinaryartillery:shapes/block/bottle/liquidcontents",
-			"liquidMaxYTranslate": 0.05
+		"liquidContainerPropsByType": {
+			"*-fired": {
+				"capacityLitres": 1,
+				"transferSizeLitres": 0.1,
+				"emptyShapeLoc": "aculinaryartillery:shapes/block/bottle/corkedbottleglass",
+				"opaqueContentShapeLoc": "aculinaryartillery:shapes/block/bottle/contents",
+				"liquidContentShapeLoc": "aculinaryartillery:shapes/block/bottle/liquidcontents",
+				"liquidMaxYTranslate": 0.05
+			}
 		}
 	},
 	"drawtype": "JSON",

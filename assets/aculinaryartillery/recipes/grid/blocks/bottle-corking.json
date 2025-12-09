@@ -14,11 +14,20 @@
 		},
 		"width": 1,
 		"height": 2,
+		"MergeAttributesFrom": "G",
 		"name": "corkedclaybottle",
 		"output": {
 			"type": "block",
-			"code": "bottle-clay-{color}-fired"
+			"code": "bottle-clay-{color}-fired",
+			"attributes": {
+				"corkedrecipe": true,
+				"renderVariant": 0,
+				"canDrinkFrom": true,
+				"isTopOpened": true,
+				"allowHeldLiquidTransfer": true
+			}
 		}
+
 	},
 	{
 		"ingredientPattern": "C,G",
@@ -35,10 +44,17 @@
 		},
 		"width": 1,
 		"height": 2,
+		"MergeAttributesFrom": "G",
 		"name": "corkedglassbottle",
 		"output": {
 			"type": "block",
 			"code": "bottle-glass-{color}-fired"
+		},
+		"attributes": {
+			"renderVariant": 0,
+			"canDrinkFrom": true,
+			"isTopOpened": true,
+			"allowHeldLiquidTransfer": true
 		}
 	}
 ]
